@@ -2,6 +2,7 @@ package learn_list;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * Created by yuan on 2017/2/17.
@@ -18,5 +19,7 @@ public class testArrayList {
             System.out.println(i);
         }
         System.out.println(log.getClass());
+
+
     }
 }
