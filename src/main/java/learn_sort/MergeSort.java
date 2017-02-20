@@ -67,13 +67,11 @@ public class MergeSort {
     }
 
     //自底向上的 归并排序
-
-    static void merge_sort_v2(int [] src){
+    public static void merge_sort_v2(int [] src){
         int N = src.length;
-        for(int sz = 1; sz<N; sz = sz+sz){
-            for(int lo=0; lo<N-sz; lo += sz+sz){
-                //需要注意的是 最后一组的，后半段可能小于前半段 所以用 Math.min(N-1, lo+sz+sz-1), 不然会超过最大的长度
-                merge(src, lo, lo+sz-1, Math.min(N-1,lo+sz+sz-1));
+        for(int sz=1; sz<N; sz += sz){
+            for(int lo=0; lo<N-sz; lo = lo+sz+sz){
+                merge(src,lo,lo+sz-1, Math.min(N-1, lo+sz+sz-1));
             }
         }
     }
@@ -85,4 +83,5 @@ public class MergeSort {
         merge_sort_v2(src);
         show(src);
     }
+
 }
