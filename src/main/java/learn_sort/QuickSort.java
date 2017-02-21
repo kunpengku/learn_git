@@ -52,11 +52,35 @@ public class QuickSort {
         quick_sort(src,k+1,hi);
 
     }
+
+    static void quick_3sort(int [] src, int lo, int hi){
+        if(lo >= hi)
+            return;
+
+        int key = src[lo];
+        int lt = lo;
+        int gt = hi;
+        int i = lt+1;
+        
+        while(i<=gt){
+            if(src[i] < key)
+                exch(src,i++,lt++);
+            else if(src[i] > key)
+                exch(src,i,gt--);
+            else
+                i++;
+        }
+
+        quick_3sort(src,lo,lt-1);
+        quick_3sort(src,gt+1, hi);
+
+
+    }
     public static void main(String[] args) {
         int [] src = {9,7,5,3,1,2,4,6,8,0};
 
-        quick_sort(src,0, src.length-1);
-
+//        quick_sort(src,0, src.length-1);
+        quick_3sort(src,0, src.length-1);
         show(src);
     }
 }
