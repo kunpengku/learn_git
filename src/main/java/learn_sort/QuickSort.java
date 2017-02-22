@@ -53,26 +53,7 @@ public class QuickSort {
 
     }
 
-    static void quick_3sort(int [] src, int lo, int hi){
-        if(lo>= hi)
-            return;
 
-        int key = src[lo];
-        int lt = lo, gt=hi, i=lt+1;
-
-        while (i<=gt){
-            if(src[i] < key){
-                exch(src,i++,lt++);
-            }else if(src[i] > key){
-                exch(src,i,gt--);
-            }else {
-                i++;
-            }
-        }
-
-        quick_3sort(src,lo,lt-1);
-        quick_3sort(src,gt+1,hi);
-    }
 
 
     public static void main(String[] args) {
@@ -81,5 +62,26 @@ public class QuickSort {
 //        quick_sort(src,0, src.length-1);
         quick_3sort(src,0, src.length-1);
         show(src);
+    }
+
+    private static void quick_3sort(int[] src, int lo, int hi) {
+        if(lo>=hi)
+            return;
+
+        int key = src[lo];
+        int lt=lo, i=lo+1, gt=hi;
+
+        while(i<=gt){
+            if(src[i] < key){
+                exch(src,i++,lt++);
+            }else if(src[i] > src[gt]){
+                exch(src,i,gt--);
+            }else {
+                i++;
+            }
+        }
+
+        quick_3sort(src,lo,lt-1);
+        quick_3sort(src,gt+1,hi);
     }
 }

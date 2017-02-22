@@ -16,6 +16,14 @@ public class MaxPQ {
         swim(N);
     }
 
+    private void swim(int k) {
+        while (k > 1 && pq[k] > pq[k/2]){
+            exch(k,k/2);
+            k = k/2;
+        }
+    }
+
+
     public int delMax(){
         int max = pq[1];
         exch(1,N--);
@@ -26,31 +34,27 @@ public class MaxPQ {
         return max;
     }
 
-    private void sink(int k){
-        while (k*2 <= N){
-            int j=2*k;
-            if(j<N && pq[j] < pq[j+1])
+    private void sink(int k) {
+        while (k*2 < N){
+            int j=k*2;
+            if(j<N && pq[j] < pq[j+1]){
                 j++;
-            if(pq[k] >= pq[j])
+            }
+            if(pq[k] > pq[j]){
                 break;
+            }
             exch(k,j);
-            k = j;
+            k=j;
         }
     }
-    private void swim(int k){
-        // 是从1开始存储的
-        while(k>1 && pq[k/2] < pq[k]){
-            exch(k,k/2);
-            k = k/2;
-        }
-    }
+
 
     private void exch(int i, int j){
         int tmp=pq[i];
         pq[i]=pq[j];
         pq[j] = tmp;
     }
-    
+
 
     public static void main(String[] args) {
         MaxPQ a = new MaxPQ(10);
