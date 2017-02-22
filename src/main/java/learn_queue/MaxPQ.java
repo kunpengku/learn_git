@@ -50,6 +50,7 @@ public class MaxPQ {
         pq[i]=pq[j];
         pq[j] = tmp;
     }
+    
 
     public static void main(String[] args) {
         MaxPQ a = new MaxPQ(10);
