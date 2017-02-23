@@ -33,14 +33,6 @@ public class InsertSort {
         src[j] = tmp;
     }
 
-    private static void insert_sort(int [] src){
-        //从第二个元素开始，因为第一个，已经是有序的了。
-        for(int i=1; i<src.length;i++){
-            for(int j = i; j>=1 && src[j]<src[j-1]; j--){
-                exch(src,j , j-1);
-            }
-        }
-    }
 
     public static void main(String[] args) {
         int [] src = {9,7,5,3,1,2,4,6,8,0};
@@ -48,5 +40,13 @@ public class InsertSort {
         insert_sort(src);
 
         show(src);
+    }
+
+    private static void insert_sort(int[] src) {
+        int N = src.length;
+        for(int i=1; i<N; i++){
+            for(int j=i; j>=1 && src[j ] < src[j-1];j--)
+                exch(src,j,j-1);
+        }
     }
 }

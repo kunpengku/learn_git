@@ -27,22 +27,6 @@ public class ShellSort {
         src[j] = tmp;
     }
 
-    static void shell_sort(int [] src){
-        int h = 1;
-        while(h < src.length/3){
-            h = h*3+1;
-        }
-
-        while(h>=1){
-            for(int i=h; i<src.length;i=i++){
-                for(int j=i; j>=h && src[j] < src[j-h]; j=j-h){
-                    exch(src,j,j-h);
-                }
-            }
-
-            h = h/3;
-        }
-    }
 
     public static void main(String[] args) {
         int [] src = {9,7,5,3,1,2,4,6,8,0};
@@ -50,5 +34,23 @@ public class ShellSort {
         shell_sort(src);
 
         show(src);
+    }
+
+    private static void shell_sort(int[] src) {
+        int N = src.length;
+        int h=1;
+        while (h<N/3){
+            h = h*3+1;
+        }
+
+        while(h>=1){
+            for(int i=h;i<N;i++){
+                for(int j=i; j>=h && src[j] < src[j-h]; j= j-h){
+                    exch(src,j,j-h);
+                }
+            }
+
+            h=h/3;
+        }
     }
 }

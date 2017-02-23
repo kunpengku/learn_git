@@ -1,5 +1,7 @@
 package learn_sort;
 
+
+
 /**
  * Created by yuan on 2017/2/18.
  * 快速排序 ，因为真的很快
@@ -26,32 +28,8 @@ public class QuickSort {
         src[j] = tmp;
     }
 
-    static int partition(int [] src, int lo, int hi){
-        int key = src[lo];
-        int i=lo;
-        int j=hi;
-        while(i!=j){
-            while(src[j] >= key && i<j)
-                j--;
-            while(src[i] <= key && i<j)
-                i++;
-            if(i!=j)
-                exch(src,i,j);
-        }
-        exch(src,i,lo);
 
-        return i;
-    }
 
-    static void quick_sort(int [] src, int lo, int hi){
-        if(lo>=hi)
-            return;
-        int k = partition(src,lo,hi);
-
-        quick_sort(src,lo, k-1);
-        quick_sort(src,k+1,hi);
-
-    }
 
 
 
@@ -59,29 +37,59 @@ public class QuickSort {
     public static void main(String[] args) {
         int [] src = {9,7,5,3,1,2,4,6,8,0};
 
-//        quick_sort(src,0, src.length-1);
-        quick_3sort(src,0, src.length-1);
+        quick_sort(src,0, src.length-1);
+//        quick_3sort(src,0, src.length-1);
         show(src);
     }
 
+
+    private static void quick_sort(int[] src, int lo, int hi) {
+        if(lo>= hi)
+            return;
+
+        int h = partition(src,lo,hi);
+
+        quick_sort(src,lo,h-1);
+        quick_sort(src,h+1,hi);
+    }
+    // com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray.partition()
+    private static int partition(int[] src, int lo, int hi) {
+        int x = src[(lo+hi) >>> 1];
+        int i= lo-1;
+        int j=hi+1;
+
+        while(true){
+            while (src[--j] > x);
+            while (src[++i] < x);
+            if(i<j) {
+                int tmp = src[i];
+                src[i] = src[j];
+                src[j] = tmp;
+            }else
+                return j;
+        }
+    }
+
     private static void quick_3sort(int[] src, int lo, int hi) {
+        //快速排序因为 是 递归调用 ，一定要记得 退出递归的判断。
         if(lo>=hi)
             return;
 
         int key = src[lo];
-        int lt=lo, i=lo+1, gt=hi;
+        int lt=lo,i=lo+1,gt=hi;
 
         while(i<=gt){
-            if(src[i] < key){
+            if(src[i]<src[lt])
                 exch(src,i++,lt++);
-            }else if(src[i] > src[gt]){
+            else if(src[i] > src[gt])
                 exch(src,i,gt--);
-            }else {
+            else
                 i++;
-            }
         }
 
         quick_3sort(src,lo,lt-1);
         quick_3sort(src,gt+1,hi);
     }
+
+
 }
