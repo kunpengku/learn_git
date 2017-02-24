@@ -17,9 +17,9 @@ public class MaxPQ {
     }
 
     private void swim(int k) {
-        while (k > 1 && pq[k] > pq[k/2]){
+        while(k>1 && pq[k] > pq[k/2]){
             exch(k,k/2);
-            k = k/2;
+            k=k/2;
         }
     }
 
@@ -35,15 +35,13 @@ public class MaxPQ {
     }
 
     private void sink(int k) {
-        while (k*2 < N){
-            int j=k*2;
-            if(j<N && pq[j] < pq[j+1]){
+        while(2*k < N){
+            int j= 2*k;
+            if(j<N && pq[j] < pq[j+1])
                 j++;
-            }
-            if(pq[k] > pq[j]){
+            if(pq[j] < pq[k])
                 break;
-            }
-            exch(k,j);
+            exch(j,k);
             k=j;
         }
     }
