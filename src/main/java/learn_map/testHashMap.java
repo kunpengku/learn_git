@@ -1,6 +1,8 @@
 package learn_map;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Created by yuan on 2017/2/17.
@@ -20,5 +22,11 @@ public class testHashMap {
         //哈希是通过hash单词音译过来的，也可以称为散列表
         //equals方法就是哈希码碰撞时才会执行的方法
 
+        Iterator iter = aa.entrySet().iterator();
+        while(iter.hasNext()){
+            Map.Entry en = (Map.Entry) iter.next();
+            System.out.println(en.getKey() + ":" + en.getValue() );
+
+        }
     }
 }
