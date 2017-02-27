@@ -7,10 +7,12 @@ import java.util.Map;
 
 /**
  * Created by yuan on 2017/2/17.
+ * Linked 说明在 迭代输出的时候，是按照插入的顺序 ，来输出的。
  */
-public class testHashMap {
+public class testLinkedHashMap {
     public static void main(String[] args) {
-        HashMap<String ,String> aa = new HashMap<String, String>();
+//        HashMap<String ,String> aa = new HashMap<String, String>();
+        HashMap<String ,String> aa = new LinkedHashMap<String, String>();
         String k1 = "jan";
         String k2 = "May";
         String k3 = "Otc";
@@ -24,7 +26,6 @@ public class testHashMap {
         //equals方法就是哈希码碰撞时才会执行的方法
 
         Iterator iter = aa.entrySet().iterator();
-        //可以看到，并没有按照 插入的顺序输出，那是 LinkedHashMap的特性
         while(iter.hasNext()){
             Map.Entry en = (Map.Entry) iter.next();
             System.out.println(en.getKey() + ":" + en.getValue() );
