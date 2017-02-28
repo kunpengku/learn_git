@@ -42,46 +42,29 @@ public class QuickSort {
         show(src);
     }
 
-
     private static void quick_sort(int[] src, int lo, int hi) {
-        if(lo>= hi)
-            return;
-
-        int h = partition(src,lo,hi);
-
-        quick_sort(src,lo,h-1);
-        quick_sort(src,h+1,hi);
-    }
-    // com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray.partition()
-    private static int partition(int[] src, int lo, int hi) {
-        int x = src[(lo+hi) >>> 1];
-        int i= lo-1;
-        int j=hi+1;
-
-        while(true){
-            while (src[--j] > x);
-            while (src[++i] < x);
-            if(i<j) {
-                int tmp = src[i];
-                src[i] = src[j];
-                src[j] = tmp;
-            }else
-                return j;
-        }
-    }
-
-    private static void quick_3sort(int[] src, int lo, int hi) {
-        //快速排序因为 是 递归调用 ，一定要记得 退出递归的判断。
         if(lo>=hi)
             return;
 
-        int key = src[lo];
-        int lt=lo,i=lo+1,gt=hi;
+        int k= partition(src,lo,hi);
+        quick_sort(src,lo,k-1);
+        quick_sort(src,k+1,hi);
+
+    }
+
+
+
+    private static void quick_3sort(int[] src, int lo, int hi) {
+        if(lo>=hi)
+            return;
+
+        int key=src[lo];
+        int lt=lo,gt=hi, i= lo+1;
 
         while(i<=gt){
-            if(src[i]<src[lt])
+            if(src[i]<key)
                 exch(src,i++,lt++);
-            else if(src[i] > src[gt])
+            else if(src[i]>key)
                 exch(src,i,gt--);
             else
                 i++;
@@ -89,6 +72,42 @@ public class QuickSort {
 
         quick_3sort(src,lo,lt-1);
         quick_3sort(src,gt+1,hi);
+
+    }
+
+
+
+    // com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray.partition()
+//    private static int partition(int[] src, int lo, int hi) {
+//
+//        int key = src[(lo+hi)>>>1];
+//        int i=lo-1, j=hi+1;
+//        while(true){
+//            while(src[--j]>key);
+//            while(src[++i]<key);
+//            if(i<j)
+//                exch(src,i,j);
+//            else
+//                return j;
+//        }
+//    }
+
+    // 普通的 partition
+    private static int partition(int[] src, int lo, int hi) {
+        int key=src[lo];
+        int i=lo;
+        int j=hi;
+
+        while(i!=j){
+            while(src[j]>=key && i<j)
+                j--;
+            while(src[i]<=key && i<j)
+                i++;
+            if(i<j)
+                exch(src,i,j);
+        }
+        exch(src,i,lo);
+        return i;
     }
 
 
