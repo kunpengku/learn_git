@@ -11,9 +11,9 @@ import java.util.TreeMap;
 public class testTreeMap {
     public static void main(String[] args) {
         SortedMap<String, String> aa = new TreeMap<String, String>();
-        String k1 = "jan";
-        String k2 = "May";
-        String k3 = "Otc";
+        String k1 = "3";
+        String k2 = "2";
+        String k3 = "1";
 
         aa.put(k1, "k1_value");
         aa.put(k2, "k2_value");
