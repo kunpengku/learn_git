@@ -69,19 +69,26 @@ public class TestSelector {
 
                     ByteBuffer echoBuffer = ByteBuffer.allocate(1024);
 
-                    while(true){
+//                    while(true){
                         echoBuffer.clear();
+
+                        echoBuffer.put("a".getBytes());
+                        echoBuffer.put("b".getBytes());
+
                         int  r = sc.read(echoBuffer);
-                        if (r<=0) break;
 
-//                        echoBuffer.putChar('f');
+                        echoBuffer.put("c".getBytes());
+                        echoBuffer.put("d".getBytes());
 
+//                        if (r<=1) break;
+//                        echoBuffer.rewind();
                         echoBuffer.flip();
 
                         sc.write(echoBuffer);
+
                         nbyte += r;
-                    }
-                    System.out.println("recv:"+echoBuffer.get());
+//                    }
+//                    System.out.println("recv:"+echoBuffer.get());
 
                     System.out.println("echo" + nbyte+" from " + sc);
 
