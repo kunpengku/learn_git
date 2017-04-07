@@ -24,13 +24,14 @@ public class TClient {
               readline=sin.readLine(); //从系统标准输入读入一字符串
               while(!readline.equals("bye")){
               //若从标准输入读入的字符串为 "bye"则停止循环
-                    os.println(readline);
+//                    os.println(readline);
+                    os.print(readline);
                     //将从系统标准输入读入的字符串输出到Server
                     os.flush();
                     //刷新输出流，使Server马上收到该字符串
                     System.out.println("Client:"+readline);
                     //在系统标准输出上打印读入的字符串
-                  while(is.readLine() != null)
+                  //is.readLine 会阻塞如果没有的话
                       System.out.println("Server:" + is.readLine());
 
                     //从Server读入一字符串，并打印到标准输出上
