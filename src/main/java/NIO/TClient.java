@@ -30,9 +30,12 @@ public class TClient {
                     //刷新输出流，使Server马上收到该字符串
                     System.out.println("Client:"+readline);
                     //在系统标准输出上打印读入的字符串
-                    System.out.println("Server:"+is.readLine());
+                  while(is.readLine() != null)
+                      System.out.println("Server:" + is.readLine());
+
                     //从Server读入一字符串，并打印到标准输出上
-                    readline=sin.readLine(); //从系统标准输入读入一字符串
+                  readline=sin.readLine(); //从系统标准输入读入一字符串
+
               } //继续循环
               os.close(); //关闭Socket输出流
               is.close(); //关闭Socket输入流

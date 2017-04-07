@@ -4,10 +4,13 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetDecoder;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -74,15 +77,19 @@ public class TestSelector {
 
                         echoBuffer.put("a".getBytes());
                         echoBuffer.put("b".getBytes());
-
+                    System.out.println("position:"+echoBuffer.position());
                         int  r = sc.read(echoBuffer);
 
+                    System.out.println("position:"+echoBuffer.position());
                         echoBuffer.put("c".getBytes());
+                    System.out.println("position:"+echoBuffer.position());
                         echoBuffer.put("d".getBytes());
-
+                    echoBuffer.put("\n".getBytes());
 //                        if (r<=1) break;
 //                        echoBuffer.rewind();
                         echoBuffer.flip();
+
+                    System.out.println(getString(echoBuffer));
 
                         sc.write(echoBuffer);
 
@@ -103,6 +110,23 @@ public class TestSelector {
                 }
             }
 
+        }
+    }
+
+    public static String getString(ByteBuffer buffer) {
+        Charset charset = null;
+        CharsetDecoder decoder = null;
+        CharBuffer charBuffer = null;
+        try {
+            charset = Charset.forName("UTF-8");
+            decoder = charset.newDecoder();
+            //用这个的话，只能输出来一次结果，第二次显示为空
+// charBuffer = decoder.decode(buffer);
+            charBuffer = decoder.decode(buffer.asReadOnlyBuffer());
+            return charBuffer.toString();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return "error";
         }
     }
 
