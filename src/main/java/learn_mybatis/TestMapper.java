@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Select;
  */
 public interface TestMapper {
 
-    @Select("select * from users where id = #{id}")
     User getUser_3(int id);
+
+    @Select("select * from users where id = #{id}")
+    User getUser_4(int id);
 }
