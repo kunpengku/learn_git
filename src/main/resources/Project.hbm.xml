@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="learn_hibernate">
+
+    <class name="IdCard" table="T_ID_CARD">
+        <id name="id" column="ID">
+            <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
+            </generator></id>
+
+        <property name="idNumber" column="ID_NUMBER"/>
+        <property name="issueDate" column="ISSUE_DATE"/>
+
+    </class>
+
+    <class name="Person" table="T_PERSON">
+        <id name="id" column="ID">
+            <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
+            </generator></id>
+        <property name="firstName" column="FIRST_NAME"/>
+        <property name="lastName" column="LAST_NAME"></property>
+        <many-to-one name="idCard" column="ID_ID_CARD" unique="true"/>
+
+        <union-subclass name="Geek" table="T_GEEK">
+                    <property name="favouriteProgrammingLanguage" column="FAV_PROG_LANG">
+                    </property>
+        </union-subclass>
+    </class>
+
+</hibernate-mapping>
