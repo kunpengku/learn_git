@@ -16,4 +16,15 @@
             resultType="learn_mybatis.User">
         select * from users where id=#{id}
     </select>
+
+
+    <select id="getUser_2" parameterType="int"
+            resultType="map">
+        select * from users where id=#{id}
+    </select>
+
+    <select id="getUser_3" parameterType="int"
+            resultType="learn_mybatis.User">
+        select * from users where id=#{id}
+    </select>
 </mapper>

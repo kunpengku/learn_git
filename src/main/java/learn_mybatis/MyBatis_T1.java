@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 
 /**
  * Created by fupeng on 2017/4/11.
@@ -41,8 +42,20 @@ public class MyBatis_T1 {
         //执行查询返回一个唯一user对象的sql
         User user = session.selectOne(statement, 2);
 
-        session.close();
+        //session.close();
         System.out.println(user);
+
+
+
+        statement = "userMapper.getUser_2";//映射sql的标识字符串
+        //执行查询返回一个唯一user对象的sql
+        HashMap<String,Object> map = session.selectOne(statement, 2);
+        System.out.println(map.get("NAME"));
+
+        session.close();
+
+
+
 
     }
 }
