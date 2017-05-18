@@ -18,6 +18,7 @@ public class TestExecutorService1 {
         ExecutorService s = Executors.newSingleThreadExecutor();
         Bak oob = new Bak();
         s.execute(oob);
+        s.shutdown();
 
         ExecutorService s2 = Executors.newFixedThreadPool(3);
 

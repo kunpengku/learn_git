@@ -21,7 +21,7 @@ class printA implements Runnable{
 
     }
 }
-public class T1 {
+public class Test_Interrupt {
     public static void main(String[] args) throws InterruptedException {
         printA a = new printA();
         Thread t = new Thread(a);

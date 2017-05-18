@@ -10,7 +10,7 @@ class Task implements Callable<Integer>{
 
     public Integer call() throws Exception {
         System.out.println("cal");
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         int sum=0;
         for(int i=0;i<101;i++){
             sum+=i;
@@ -25,7 +25,7 @@ public class TestFuture {
     public static void main(String[] args) {
         ExecutorService exe = Executors.newCachedThreadPool();
         Task task = new Task();
-        Future<Integer>result = exe.submit(task);
+        Future<Integer> result = exe.submit(task);
 
         exe.shutdown();
         try {

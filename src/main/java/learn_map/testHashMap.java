@@ -2,8 +2,8 @@ package learn_map;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by yuan on 2017/2/17.
@@ -18,6 +18,8 @@ public class testHashMap {
         aa.put(k1, "k1_value");
         aa.put(k2, "k2_value");
         aa.put(k3, "k3_value");
+
+        ConcurrentHashMap a;
 
         //put和get的效率将越来越低，这里的时间复杂度是O(n)，假如有1000个元素，put时需要比较1000次。
         //哈希是通过hash单词音译过来的，也可以称为散列表
